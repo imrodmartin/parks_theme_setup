@@ -3,13 +3,36 @@
 A Drupal recipe for the **Acquia Drupal 12 Site Building** course. Applied by
 trainees at the end of Learning Module 1.
 
-It does four things:
+It does five things:
 
 1. Installs **Parks Theme** and makes it the default front-end theme
 2. Enables **UI Patterns**, which is what makes the theme's seven Single
    Directory Components placeable in Layout Builder
 3. Places the theme's 11 default blocks
-4. Leaves the site ready for Module 6
+4. Turns on **Media** and **Media Library**, and applies all five core media
+   type recipes so every media type is available
+5. Leaves the site ready for Module 6
+
+## Media types
+
+Each core recipe creates exactly one media type, so all five are applied:
+
+| Media type | From |
+|---|---|
+| Image | `core/recipes/image_media_type` |
+| Document | `core/recipes/document_media_type` |
+| Remote video | `core/recipes/remote_video_media_type` |
+| Audio | `core/recipes/audio_media_type` |
+| Local video | `core/recipes/local_video_media_type` |
+
+`image_media_type` also installs `media_library`, `path` and `views`, and
+`media_library` depends on `media`, so Media arrives transitively. Both are
+still named explicitly in the recipe so its intent does not depend on that.
+
+> **Course note.** Learning Module 3.3 has trainees apply
+> `document_media_type` and `remote_video_media_type` themselves. Because this
+> recipe now applies them at the end of Module 1, that exercise will find the
+> work already done. Drop those two lines from `recipes:` if you want 3.3 back.
 
 ## Install and apply
 
@@ -64,7 +87,11 @@ afterwards.
 ```bash
 drush config:get system.theme default          # parks_theme
 drush pm:list --status=enabled --filter=patterns
+drush pm:list --status=enabled --filter=media
+drush php:eval 'print implode(", ", array_keys(\Drupal::entityTypeManager()->getStorage("media_type")->loadMultiple()));'
 ```
+
+The last command should print all five: `audio, document, image, remote_video, video`.
 
 Then visit **Structure > Block layout**. The Parks Theme tab should show blocks
 already placed in Header, Primary menu, Breadcrumb, Content and Footer.

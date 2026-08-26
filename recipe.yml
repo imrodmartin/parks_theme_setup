@@ -1,8 +1,24 @@
 name: 'Parks Theme Setup'
-description: 'Installs Parks Theme and makes it the default front-end theme, and enables UI Patterns so the theme''s seven components are placeable in Layout Builder. Applied by trainees at the end of Learning Module 1.'
+description: 'Installs Parks Theme and makes it the default front-end theme, enables UI Patterns so the theme''s seven components are placeable in Layout Builder, and turns on Media, Media Library and all five core media types. Applied by trainees at the end of Learning Module 1.'
 type: 'Theme'
 
+# Core's media type recipes. Each one creates exactly ONE media type, so all
+# five are listed to make every media type available. image_media_type also
+# installs media_library, path and views, and media_library depends on media,
+# so Media arrives transitively - but media and media_library are still named
+# explicitly under install: below so this recipe states its own intent.
+recipes:
+  - core/recipes/image_media_type
+  - core/recipes/document_media_type
+  - core/recipes/remote_video_media_type
+  - core/recipes/audio_media_type
+  - core/recipes/local_video_media_type
+
 install:
+  # Named explicitly even though image_media_type pulls them in, so that
+  # removing a media type recipe later cannot silently take Media with it.
+  - media
+  - media_library
   # UI Patterns is what exposes a Single Directory Component to Layout Builder
   # and Block layout. Without it the theme still works and still renders, but
   # its components cannot be placed from the browser.
