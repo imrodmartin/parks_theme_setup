@@ -1,0 +1,17 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - parks_theme
+id: parks_theme_local_tasks
+theme: parks_theme
+region: content
+weight: -20
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }

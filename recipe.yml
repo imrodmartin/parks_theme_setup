@@ -1,0 +1,31 @@
+name: 'Parks Theme Setup'
+description: 'Installs Parks Theme and makes it the default front-end theme, and enables UI Patterns so the theme''s seven components are placeable in Layout Builder. Applied by trainees at the end of Learning Module 1.'
+type: 'Theme'
+
+install:
+  # UI Patterns is what exposes a Single Directory Component to Layout Builder
+  # and Block layout. Without it the theme still works and still renders, but
+  # its components cannot be placed from the browser.
+  - ui_patterns
+  - ui_patterns_blocks
+  - ui_patterns_field_formatters
+  - ui_patterns_library
+  - parks_theme
+
+config:
+  # strict: false so the recipe still applies on a site where someone has
+  # already touched system.theme, and so the block placements below are
+  # skipped rather than fought over if the theme was enabled by hand first.
+  # See gotcha 4 in the content model spec.
+  strict: false
+  actions:
+    system.theme:
+      simpleConfigUpdate:
+        default: parks_theme
+
+# The eleven default block placements are shipped in this recipe's config/
+# directory as well as in the theme's own config/optional/. Both are needed:
+# a recipe applies with the config installer in syncing mode, which suppresses
+# an extension's optional config, so a recipe-installed theme would otherwise
+# arrive with no blocks placed at all. The theme's copy is what a plain
+# `drush theme:enable parks_theme` picks up.

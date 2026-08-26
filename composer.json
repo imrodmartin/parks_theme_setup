@@ -1,0 +1,16 @@
+{
+    "name": "imrodmartin/parks_theme_setup",
+    "description": "Installs Parks Theme, makes it the default front-end theme, and enables UI Patterns so the theme's seven components are placeable in Layout Builder.",
+    "type": "drupal-recipe",
+    "keywords": ["Drupal", "recipe", "theme", "training"],
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://github.com/imrodmartin/parks_theme_setup",
+    "support": {
+        "issues": "https://github.com/imrodmartin/parks_theme_setup/issues",
+        "source": "https://github.com/imrodmartin/parks_theme_setup"
+    },
+    "require": {
+        "imrodmartin/parks_theme": "^1.0",
+        "drupal/ui_patterns": "^2.0"
+    }
+}

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - parks_theme
+id: parks_theme_content
+theme: parks_theme
+region: content
+weight: 0
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

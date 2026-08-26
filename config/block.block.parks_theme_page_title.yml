@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  theme:
+    - parks_theme
+id: parks_theme_page_title
+theme: parks_theme
+region: content
+weight: -30
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  label_display: '0'
+  provider: core
+visibility: {  }
