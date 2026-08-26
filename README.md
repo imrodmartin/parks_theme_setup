@@ -19,7 +19,8 @@ It does four things:
 ddev composer config repositories.parks_theme vcs https://github.com/imrodmartin/parks_theme
 ddev composer config repositories.parks_theme_setup vcs https://github.com/imrodmartin/parks_theme_setup
 ddev composer require imrodmartin/parks_theme_setup:^1.0
-ddev exec "cd web && ../vendor/bin/dr recipe:apply ../recipes/parks_theme_setup"
+ddev drush cache:rebuild
+ddev exec bash -c "cd web && ../vendor/bin/dr recipe:apply ../recipes/parks_theme_setup"
 ```
 
 ### Acquia Cloud IDE
@@ -28,10 +29,24 @@ ddev exec "cd web && ../vendor/bin/dr recipe:apply ../recipes/parks_theme_setup"
 composer config repositories.parks_theme vcs https://github.com/imrodmartin/parks_theme
 composer config repositories.parks_theme_setup vcs https://github.com/imrodmartin/parks_theme_setup
 composer require imrodmartin/parks_theme_setup:^1.0
+drush cache:rebuild
 cd docroot && ../vendor/bin/dr recipe:apply ../recipes/parks_theme_setup
 ```
 
 Use `web` instead of `docroot` if that is your docroot.
+
+## Do not skip the cache rebuild
+
+Drupal caches its list of available modules and themes. Composer has just put a
+new theme on disk, and until the cache is rebuilt Drupal does not know it
+exists. Skip that step and the recipe fails with:
+
+```
+Validation errors were found in recipe.yml:
+ - [install][4]: "parks_theme" is not a known module or theme.
+```
+
+That message means the cache is stale, not that the theme is missing.
 
 ## What to expect
 
