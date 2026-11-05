@@ -8,7 +8,8 @@ It does five things:
 1. Installs **Parks Theme** and makes it the default front-end theme
 2. Enables **UI Patterns**, which is what makes the theme's seven Single
    Directory Components placeable in Layout Builder
-3. Enables **Devel**
+3. Enables core's **Datetime Range**, which the Session dates field in Learning
+   Module 2 needs
 4. Places the theme's 11 default blocks
 5. Leaves the site ready for Module 6
 
@@ -59,8 +60,7 @@ That message means the cache is stale, not that the theme is missing.
 ## What to expect
 
 `composer require` installs the theme to `themes/custom/parks_theme`, the recipe
-to `recipes/parks_theme_setup`, and `drupal/ui_patterns` and `drupal/devel` to
-`modules/contrib`.
+to `recipes/parks_theme_setup`, and `drupal/ui_patterns` to `modules/contrib`.
 
 Drupal then **unpacks** the recipe: its dependencies are hoisted into your root
 `composer.json` and the recipe itself is removed from your requirements. The
@@ -73,7 +73,7 @@ afterwards.
 ```bash
 drush config:get system.theme default          # parks_theme
 drush pm:list --status=enabled --filter=patterns
-drush pm:list --status=enabled --filter=devel
+drush pm:list --status=enabled --filter=datetime_range
 ```
 
 Then visit **Structure > Block layout**. The Parks Theme tab should show blocks

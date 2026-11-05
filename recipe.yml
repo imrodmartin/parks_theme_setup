@@ -1,8 +1,11 @@
 name: 'Parks Theme Setup'
-description: 'Installs Parks Theme and makes it the default front-end theme, enables UI Patterns so the theme''s seven components are placeable in Layout Builder, and enables Devel. Applied by trainees at the end of Learning Module 1.'
+description: 'Installs Parks Theme and makes it the default front-end theme, enables UI Patterns so the theme''s seven components are placeable in Layout Builder, and enables Datetime Range for the Session dates field. Applied by trainees at the end of Learning Module 1.'
 type: 'Theme'
 
 install:
+  # Core's Datetime Range provides the field type that Session dates uses in
+  # Learning Module 2. The Standard profile doesn't turn it on.
+  - datetime_range
   # UI Patterns is what exposes a Single Directory Component to Layout Builder
   # and Block layout. Without it the theme still works and still renders, but
   # its components cannot be placed from the browser.
@@ -11,8 +14,6 @@ install:
   - ui_patterns_field_formatters
   - ui_patterns_library
   - parks_theme
-  # Developer tools for inspecting entities, config and routes.
-  - devel
 
 config:
   # strict: false so the recipe still applies on a site where someone has
